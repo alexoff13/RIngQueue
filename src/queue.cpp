@@ -13,7 +13,7 @@ Queue::Queue(const Queue &queue) {
     this->vector = new Node *[this->size];
     this->head = queue.head;
     this->tale = queue.tale;
-    for (unsigned int i = queue.head; i % queue.size != (queue.tale + 1) % queue.size; ++i) {
+    for (unsigned int i = queue.head; i % queue.size != (queue.tale) % queue.size; ++i) {
         this->vector[i % queue.size]->priority = queue.vector[i % queue.size]->priority;
         this->vector[i % queue.size]->value = queue.vector[i % queue.size]->value;
     }
@@ -24,7 +24,7 @@ Queue::~Queue() {
 }
 
 int Queue::add(Priority priority, int value) {
-    if (head == (tale + 2) % size) {
+    if (head == (tale + 1) % size) {
         return OVERFLOWED;
     }
 
@@ -73,13 +73,13 @@ Node *Queue::pop() {
 
 void Queue::clear() {
     this->head = 0;
-    this->tale = this->size - 1;
+    this->tale = this->size;
     for (int i = 0; i < size; ++i)
         vector[i] = nullptr;
 }
 
 unsigned int Queue::getLength() const {
-    return (size - head + tale + 1) % size;
+    return (size - head + tale) % size;
 }
 
 std::ostream &operator<<(std::ostream &out, const Queue &queue) {
@@ -88,7 +88,7 @@ std::ostream &operator<<(std::ostream &out, const Queue &queue) {
     } else {
         out << "(value-> " << queue.vector[queue.head]->value << " | " << queue.vector[queue.head]->priority
             << " <-priority)";
-        for (unsigned int i = queue.head + 1; i % queue.size != (queue.tale + 1) % queue.size; ++i) {
+        for (unsigned int i = queue.head + 1; i % queue.size != (queue.tale) % queue.size; ++i) {
             out << ", " << "(value-> " << queue.vector[i % queue.size]->value << " | "
                 << queue.vector[i % queue.size]->priority
                 << " <-priority)";
@@ -101,10 +101,10 @@ std::ostream &operator<<(std::ostream &out, const Queue &queue) {
 Queue &Queue::operator=(const Queue &queue) {
     this->head = 0;
     if (queue.getLength() == 0) {
-        this->tale = this->size - 1;
+        this->tale = this->size;
     } else if (this->size > queue.getLength()) {
-        this->tale = queue.getLength() - 1;
-        for (unsigned int i = queue.head, j = 0; i % queue.size != (queue.tale + 1) % queue.size; ++i, ++j) {
+        this->tale = queue.getLength();
+        for (unsigned int i = queue.head, j = 0; i % queue.size != (queue.tale) % queue.size; ++i, ++j) {
             if (this->vector[j] == nullptr) {
                 this->vector[j] = new Node(queue.vector[i % queue.size]->priority, queue.vector[i % queue.size]->value);
             } else {
@@ -113,7 +113,7 @@ Queue &Queue::operator=(const Queue &queue) {
             }
         }
     } else {
-        this->tale = this->size - 2;
+        this->tale = this->size - 1;
         for (unsigned int i = queue.head, j = 0; j <= this->tale; ++i, ++j) {
             this->vector[j] = queue.vector[i % queue.size];
         }
