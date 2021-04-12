@@ -1275,7 +1275,7 @@ static void StackLowerThanAddress(const void* ptr,
 // Ideally, we want to use `__builtin_frame_address` instead of a local variable
 // address with sanitizer disabled, but it does not work when the
 // compiler optimizes the stack frame out, which happens on PowerPC targets.
-// HWAddressSanitizer add a random tag to the MSB of the local variable address,
+// HWAddressSanitizer push a random tag to the MSB of the local variable address,
 // making comparison result unpredictable.
 GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
 GTEST_ATTRIBUTE_NO_SANITIZE_HWADDRESS_

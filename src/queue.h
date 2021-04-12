@@ -37,7 +37,7 @@ public:
 
     ~Queue();
 
-    int add(Priority priority, int value);
+    int push(Priority priority, int value);
 
     Node *pop();
 

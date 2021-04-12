@@ -5,20 +5,20 @@ using namespace std;
 
 TEST(test,SimpleTestAdd){
     auto queue = Queue(4);
-    queue.add(Priority::third, 5);
-    queue.add(Priority::third, 5);
-    queue.add(Priority::third, 5);
-    queue.add(Priority::third, 5);
-    int code = queue.add(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    int code = queue.push(Priority::third, 5);
     ASSERT_EQ(code, -1);
 }
 
 TEST(test,SimpleTestPop){
     auto queue = Queue(4);
-    queue.add(Priority::third, 5);
-    queue.add(Priority::third, 5);
-    queue.add(Priority::third, 5);
-    queue.add(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    queue.push(Priority::third, 5);
     queue.pop();
     queue.pop();
     queue.pop();
@@ -28,10 +28,10 @@ TEST(test,SimpleTestPop){
 
 TEST(test,SimpleTestCopy){
     auto queue = Queue(4);
-    queue.add(Priority::third, 5);
-    queue.add(Priority::third, 5);
-    queue.add(Priority::third, 5);
-    queue.add(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    queue.push(Priority::third, 5);
+    queue.push(Priority::third, 5);
     Queue queueCopy = Queue(3);
 
     Queue queueCopy2 = Queue(2);

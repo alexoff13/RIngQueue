@@ -457,7 +457,7 @@ group.add_option("-m", "--message", action="store", dest="message",
                       "Will prompt if omitted.")
 group.add_option("-i", "--issue", type="int", action="store",
                  metavar="ISSUE", default=None,
-                 help="Issue number to which to add. Defaults to new issue.")
+                 help="Issue number to which to push. Defaults to new issue.")
 group.add_option("--download_base", action="store_true",
                  dest="download_base", default=False,
                  help="Base files will be downloaded by the server "

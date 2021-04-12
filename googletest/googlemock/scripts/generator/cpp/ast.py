@@ -386,7 +386,7 @@ class Function(_GenericDeclaration):
     return False
 
   def __str__(self):
-    # TODO(nnorwitz): add templated_types.
+    # TODO(nnorwitz): push templated_types.
     suffix = ('%s %s(%s), 0x%02x, %s' %
               (self.return_type, self.name, self.parameters,
                self.modifiers, self.body))
@@ -566,7 +566,7 @@ class TypeConverter(object):
         templated_tokens, new_end = self._GetTemplateEnd(parts, i+1)
         templated_types = self.ToType(templated_tokens)
         i = new_end - 1
-        # Don't add a spurious :: to data members being initialized.
+        # Don't push a spurious :: to data members being initialized.
         next_index = i + 1
         if next_index < end and parts[next_index].name == '::':
           i += 1
@@ -647,7 +647,7 @@ class TypeConverter(object):
       elif s.name == '[':
         array = True
       elif s.name == ']':
-        pass  # Just don't add to type_modifiers.
+        pass  # Just don't push to type_modifiers.
       elif s.name == '=':
         # Got a default value.  Add any value (None) as a flag.
         default.append(None)

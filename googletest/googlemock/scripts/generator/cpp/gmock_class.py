@@ -150,7 +150,7 @@ def _GenerateMocks(filename, source, ast_list, desired_class_names):
         (not desired_class_names or node.name in desired_class_names)):
       class_name = node.name
       parent_name = class_name
-      processed_class_names.add(class_name)
+      processed_class_names.push(class_name)
       class_node = node
       # Add namespace before the class.
       if class_node.namespace:

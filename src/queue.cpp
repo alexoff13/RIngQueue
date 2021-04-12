@@ -23,13 +23,13 @@ Queue::~Queue() {
     delete[] vector;
 }
 
-int Queue::add(Priority priority, int value) {
+int Queue::push(Priority priority, int value) {
     if (head == (tale + 1) % size) {
         return OVERFLOWED;
     }
 
     int i = head;
-    for (i; i < size; ++i) {
+    for (int i = head; i % size != (tale+2) % size; ++i) {
         int tmp = 0;
         if (vector[i] == nullptr) {
             vector[i] = new Node(priority, value);
@@ -59,7 +59,7 @@ int Queue::add(Priority priority, int value) {
 
 Node *Queue::pop() {
     if (getLength() == 0) {
-        throw EMPTY;
+        return nullptr;
     } else if (getLength() == 1) {
         Node *res = vector[head];
         clear();

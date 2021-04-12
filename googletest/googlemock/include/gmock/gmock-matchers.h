@@ -5097,7 +5097,7 @@ class ExceptionMatcherImpl {
   };
 
   // If the matchee raises an exception of a wrong type, we'd like to
-  // catch it and print its message and type. To do that, we add an additional
+  // catch it and print its message and type. To do that, we push an additional
   // catch clause:
   //
   //     try { ... }

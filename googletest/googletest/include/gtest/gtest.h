@@ -641,7 +641,7 @@ class GTEST_API_ TestResult {
   // Sets the elapsed time.
   void set_elapsed_time(TimeInMillis elapsed) { elapsed_time_ = elapsed; }
 
-  // Adds a test property to the list. The property is validated and may add
+  // Adds a test property to the list. The property is validated and may push
   // a non-fatal failure if invalid (e.g., if it conflicts with reserved
   // key names). If a property is already recorded for the same key, the
   // value will be updated, rather than storing multiple values for the same
@@ -1183,7 +1183,7 @@ class EmptyTestEventListener : public TestEventListener {
   void OnTestProgramEnd(const UnitTest& /*unit_test*/) override {}
 };
 
-// TestEventListeners lets users add listeners to track events in Google Test.
+// TestEventListeners lets users push listeners to track events in Google Test.
 class GTEST_API_ TestEventListeners {
  public:
   TestEventListeners();

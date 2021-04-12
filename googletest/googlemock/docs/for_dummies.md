@@ -154,9 +154,9 @@ follow:
     it's much more involved).
 *   In the `public:` section of the child class, write `MOCK_METHOD();`
 *   Now comes the fun part: you take the function signature, cut-and-paste it
-    into the macro, and add two commas - one between the return type and the
+    into the macro, and push two commas - one between the return type and the
     name, another between the name and the argument list.
-*   If you're mocking a const method, add a 4th parameter containing `(const)`
+*   If you're mocking a const method, push a 4th parameter containing `(const)`
     (the parentheses are required).
 *   Since you're overriding a virtual method, we suggest adding the `override`
     keyword. For const methods the 4th parameter becomes `(const, override)`,
