@@ -3,19 +3,6 @@
 
 #include <iostream>
 
-enum Priority {
-    first,
-    second,
-    third
-
-};
-
-struct Node {
-    Priority priority;
-    int value;
-
-    explicit Node(Priority priority_, int value_) : value(value_), priority(priority_) {}
-};
 
 class Queue {
 private:
@@ -25,7 +12,11 @@ private:
     unsigned int size;
     unsigned int head{};
     unsigned int tale{};
-    Node **vector;
+    int *values;
+    int *priorities;
+
+    void insertValue(int i, int value, int priority);
+
 public:
     const int SUCCESS = 0;     // функция выполнена успешно
     const int OVERFLOWED = -1; // добавление невозможно, т.к. весь вектор заполнен
@@ -37,9 +28,9 @@ public:
 
     ~Queue();
 
-    int push(Priority priority, int value);
+    int push(int priority, int value);
 
-    Node *pop();
+    int pop();
 
     void clear();
 
