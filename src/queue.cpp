@@ -26,7 +26,7 @@ Queue::~Queue() {
     delete[] values;
 }
 
-//5 удалить и 10 добавить
+
 int Queue::push(int priority, int value) {
     if (head == (tale + 2) % size) {
         return OVERFLOWED;
@@ -38,8 +38,6 @@ int Queue::push(int priority, int value) {
         return SUCCESS;
     }
     for (unsigned int i = head + 1; i % size != (tale + 1) % size; ++i) {
-        int asdas = priorities[i];
-        int asdasddasd = values[i];
         if (priorities[i] < priority) {
             tmp = i;
             insertValue(tmp, value, priority);
@@ -102,17 +100,24 @@ std::ostream &operator<<(std::ostream &out, const Queue &queue) {
                 << " <-priority)";
         }
     }
-//    for (int i=0;i<queue.size-1;i++){
-//        out << ", " << "(value-> " << queue.values[i] << " | "
-//                << queue.priorities[i]
-//                << " <-priority)";
-//    }
+
     return out;
 }
 
 
 Queue &Queue::operator=(const Queue &queue) {
-    this->head = 0;
+
+    if (queue.size == this->size) {
+        this->head = queue.head;
+        this->tale = queue.tale;
+        for (unsigned int i = queue.head + 1; i % queue.size != (queue.tale + 1) % queue.size; ++i) {
+            this->values[i % queue.size] = queue.values[i % queue.size];
+            this->priorities[i % queue.size] = queue.priorities[i % queue.size];
+        }
+        return *this;
+    } else {
+        this->head = 0;
+    }
     if (queue.getLength() == 0) {
         this->tale = this->size - 1;
     } else if (this->size > queue.getLength()) {
